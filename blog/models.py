@@ -2,6 +2,9 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
+from taggit.managers import TaggableManager
+
+
 
 
 # Create your models here.
@@ -16,6 +19,7 @@ class Post(models.Model):
         PUBLISHED = 'PB', 'Published'
     
     
+    tags = TaggableManager()  # Agrega TaggableManager para agregar tags a los posts.
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,unique_for_date='publish')
     author = models.ForeignKey(
